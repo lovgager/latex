@@ -1,0 +1,70 @@
+\documentclass[12pt]{article} 
+\usepackage[russian]{babel}
+\usepackage{amsmath}			% for math formulas
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{amsfonts}			% for math formulas
+\usepackage{amssymb}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage[left=25mm, top=20mm, right=25mm, bottom=20mm, nohead, nofoot]{geometry}
+\usepackage{graphicx,xcolor}
+\pagestyle{empty}
+
+\begin{document}
+
+%-------------------------------
+%	TITLE SECTION
+%-------------------------------
+
+
+\begin{flushleft}
+\url{https://www.facebook.com/profile.php?id=10000654912}
+\end{flushleft}
+\hrule 
+\begin{flushright}
+03.04.2021
+\end{flushright}
+\bigskip
+
+%-------------------------------
+%	CONTENTS
+%-------------------------------
+
+\newtheorem*{task}{Задача}
+\begin{task}
+Доказать, что в прямоугольной декартовой системе координат на плоскости расстояние $d$ от точки $M_0 = (x_0, y_0)$ до прямой $\alpha: Ax+By+C=0, \enskip \sqrt{A^2+B^2} \neq 0,$ вычисляется по формуле
+\begin{equation*}
+    d = \frac{|Ax_0+By_0+C|}{\sqrt{A^2+B^2}}.
+\end{equation*}
+\end{task}
+
+\noindent\textbf{Решение.} Проведём через точку $M_0$ прямую $\beta$, перпендикулярную прямой $\alpha$. Обозначим точку их пересечения через $D$.
+\begin{figure}[ht]\centering
+    \def\svgwidth{7cm}
+    \input{drawing.pdf_tex}
+\end{figure}
+
+\noindent Тогда направляющий вектор прямой $\beta$ совпадает с вектором нормали прямой $\alpha$ и равен $\vec{n} = \{A,B\}$ (он не обязательно направлен в ту же полуплоскость, в которой лежит точка $M_0$, т. к. рисунок лишь схематичный). Значит, вектор $\overrightarrow{DM_0}$ сонаправлен с вектором нормали, то есть справедливо равенство
+\begin{equation*}
+    \overrightarrow{DM_0} = t\vec{n}
+\end{equation*}
+для некоторого числа $t$. Пусть $D = (x_D, y_D)$, тогда $M_0 = D + t\vec{n}$, а в покоординатной записи 
+\begin{equation*}
+    x_0 = x_D + At, \enskip y_0 = y_D + Bt,
+\end{equation*}
+\begin{equation}
+    \label{1}x_D = x_0 - At, \enskip y_D = y_0 - Bt.
+\end{equation}
+Так как точка $D$ принадлежит прямой $\alpha$, для её координат справедливо равенство $Ax_D + By_D + C$. Подставляя сюда выражения (\ref{1}), получим
+\begin{gather*}
+    A(x_0 - At) + B(y_0 - Bt) + C = 0, \\
+    Ax_0 + By_0+C = t(A^2 + B^2), \\
+    t = \frac{Ax_0+By_0+C} {A^2 + B^2}.
+\end{gather*}
+Искомое расстояние $d$, очевидно равно длине вектора $\overrightarrow{DM_0}$. В итоге получаем
+\begin{equation*}
+    d = |\overrightarrow{DM_0}| = |t|\cdot|\vec{n}|
+    = \frac{Ax_0+By_0+C} {A^2 + B^2} \cdot \sqrt{A^2 + B^2} = \frac{|Ax_0+By_0+C|}{\sqrt{A^2+B^2}}.
+\end{equation*}
+
+\end{document}
