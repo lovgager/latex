@@ -1,0 +1,66 @@
+\documentclass[12pt]{article} 
+\usepackage[russian]{babel}
+\usepackage{amsmath}			% for math formulas
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{amsfonts}			% for math formulas
+\usepackage{amssymb}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage[left=25mm, top=20mm, right=25mm, bottom=20mm, nohead, nofoot]{geometry}
+\pagestyle{empty}
+\begin{document}
+
+%-------------------------------
+%	TITLE SECTION
+%-------------------------------
+
+
+\begin{flushleft}
+\url{https://www.facebook.com/profile.php?id=10000654912}
+\end{flushleft}
+\hrule 
+\begin{flushright}
+05.04.2021
+\end{flushright}
+\bigskip
+
+%-------------------------------
+%	CONTENTS
+%-------------------------------
+
+\newtheorem*{task}{Задача}
+\begin{task}
+Плотность распределения случайной величины $\xi$ имеет вид:
+\begin{equation*}
+    f(x) = \frac{C}{x^2 + 4}, \quad x \in\mathbb{R} \quad (\text{распределение Коши}).
+\end{equation*}
+а) Определить константу $C$.\\
+б) Найти функцию распределения случайной величины $\xi$.\\
+в) Вычислить $\mathbb{P}(-1 < \xi < 1)$.
+\end{task}
+
+\noindent\textbf{Решение.} Константу $C$ можно вычислить с использованием свойства о том, что интеграл плотности по всей числовой прямой равен 1:
+\begin{equation*}
+    1 = \int\limits_{-\infty}^{+\infty} f(x)dx = \int\limits_{-\infty}^{+\infty} \frac{C}{x^2 + 4} \;dx = \frac{C}{2}\arctan{\frac{x}{2}} \bigg|_{-\infty}^{+\infty} = \frac{C\pi}{2} \Rightarrow C = \frac{2}{\pi}.
+\end{equation*}
+
+Функция распределения вычисляется как интеграл с переменным верхним пределом от функции плотности:
+\begin{equation*}
+    F(x) = \int\limits_{-\infty}^{x} f(t)dt = \frac{1}{\pi} \arctan{\frac{t}{2}} \bigg|_{-\infty}^{x} = \frac{1}{\pi} \left(\arctan{\frac{x}{2}} + \frac{\pi}{2}\right) = \frac{1}{2} + \frac{1}{\pi}\arctan{\frac{x}{2}}.
+\end{equation*}
+
+Наконец, вероятность попадания случайной величины $\xi$ в заданный интервал равна разности функций распределения в левом и правом концах интервала, поскольку по определению выполнено равенство $F(x) = \mathbb{P}(\xi < x).$
+\begin{gather*}
+    \mathbb{P}(-1 < \xi < 1) = \mathbb{P}(x < 1) - \mathbb{P}(x < -1) = F(1) - F(-1) = \\ = \frac{1}{\pi} \arctan{\frac{1}{2}} - \frac{1}{\pi}\arctan\left(-\frac{1}{2}\right) = \frac{2}{\pi} \arctan{\frac{1}{2}} \approx 0,295.
+\end{gather*}
+
+Отметим, что распределение Коши -- классический пример вероятностного распределения, не имеющего математического ожидания. Покажем это:
+\begin{equation*}
+    \mathbb{E}\xi = \int\limits_{-\infty}^{+\infty} xf(x)dx = \frac{2}{\pi} \int\limits_{-\infty}^{+\infty} \frac{x\,dx}{x^2 + 4} = \frac{1}{\pi} \int\limits_{-\infty}^{+\infty} \frac{d(x^2)}{x^2 + 4} = \frac{1}{\pi} \ln(x^2+4) \bigg|_{-\infty}^{+\infty} = 
+\end{equation*}
+\begin{equation*}
+    = \frac{1}{\pi} \lim_{\substack{A\rightarrow +\infty\\ B\rightarrow -\infty}} (\ln(A^2+4) - \ln(B^2 + 4)).
+\end{equation*}
+Последний предел, очевидно, не существует.
+
+\end{document}
