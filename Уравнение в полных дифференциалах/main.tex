@@ -1,0 +1,96 @@
+\documentclass[12pt]{article} 
+\usepackage[russian]{babel}
+\usepackage{amsmath}			% for math formulas
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{amsfonts}			% for math formulas
+\usepackage{amssymb}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage[left=25mm, top=20mm, right=25mm, bottom=20mm, nohead, nofoot]{geometry}
+\pagestyle{empty}
+\begin{document}
+
+%-------------------------------
+%	TITLE SECTION
+%-------------------------------
+
+
+\begin{flushleft}
+\url{https://www.facebook.com/profile.php?id=10000654912}
+
+\url{https://github.com/lovgager/latex}
+\end{flushleft}
+\hrule 
+\begin{flushright}
+05.04.2021
+\end{flushright}
+\bigskip
+
+%-------------------------------
+%	CONTENTS
+%-------------------------------
+
+\newtheorem*{task}{Задача}
+\begin{task}
+Проверить, что данное уравнение является уравнением в полных дифференциалах, и решить его.
+\begin{equation} \label{task_eq}
+    \left(\frac{x}{\sin{y}}+2\right)dx + \frac{(x^2+1) \cos{y}}{\cos{2y}-1}dy = 0. 
+\end{equation}
+\end{task}
+
+\noindent\textbf{Решение.} Напомним, что уравнение
+\begin{equation}\label{main_eq}
+    M(x,y)dx + N(x,y)dy = 0
+\end{equation}
+называется уравнением в полных дифференциалах, если его левая часть представляет собой полный дифференциал некоторой функции $F(x,y),$ то есть 
+\begin{equation*}
+    dF(x,y) = M(x,y)dx + N(x,y)dy.
+\end{equation*}
+Это имеет место, если выполнены равенства
+\begin{equation}\label{partial_der}
+    \frac{\partial F}{\partial x} = M(x,y), \quad \frac{\partial F}{\partial y} = N(x,y).
+\end{equation}
+Другими словами, для решения уравнения (\ref{main_eq}) достаточно найти функцию $F(x,y),$ зная её частные производные $F_x' = M(x,y)$ и $F_y' = N(x,y).$ 
+
+Для достаточно гладких функций справедливо равенство вторых частных производных, то есть
+\begin{equation*}
+    \frac{\partial^2F}{\partial x\partial y} = \frac{\partial^2F}{\partial y\partial x}.
+\end{equation*}
+Отсюда и из равенств (\ref{partial_der}) следует, что
+\begin{equation}\label{condition}
+    \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}.
+\end{equation}
+Это необходимое условие на то, чтобы уравнение (\ref{main_eq}) являлось уравнением в полных дифференциалах. Вернёмся к уравнению (\ref{task_eq}) и проверим для него условие (\ref{condition}).
+\begin{equation*}
+    M(x,y) = \frac{x}{\sin{y}}+2, \quad\quad N(x,y) = \frac{(x^2+1) \cos{y}}{\cos{2y}-1},
+\end{equation*}
+\begin{equation*}
+    \frac{\partial M}{\partial y} = -x\,\frac{\cos{y}}{\sin^2 y}, \quad\quad \frac{\partial N}{\partial x} = 2x\,\frac{\cos{y}}{\cos{2y}-1} = -x\,\frac{\cos{y}}{\sin^2 y}.
+\end{equation*}
+\newpage
+Таким образом, условие (\ref{condition}) выполнено. Для нахождения функции $F(x,y)$ можно проинтегрировать первое из уравнений (\ref{partial_der}) по $x$, при этом считаем $y$ постоянным:
+\begin{equation*}
+    F(x,y) = \int M(x,y)dx = \int \left(\frac{x}{\sin{y}}+2\right)dx = \frac{x^2}{2\sin{y}} + 2x + \varphi(y).
+\end{equation*}
+Для нахождения неизвестной функции $\varphi(y)$ подставим это выражение во второе из уравнений (\ref{partial_der}):
+\begin{equation*}
+    \left(\frac{x^2}{2\sin{y}} + 2x + \varphi(y)\right)_y' = \frac{(x^2+1) \cos{y}}{\cos{2y}-1},\vspace{3mm}
+\end{equation*}
+\begin{equation*}
+    -\frac{x^2\cos{y}}{2\sin^2 y} + \varphi'(y) = -\frac{(x^2+1)\cos{y}}{2\sin^2 y},\vspace{3mm}
+\end{equation*}
+\begin{equation*}
+    \varphi'(y) = -\frac{\cos{y}}{2\sin^2 y},\vspace{3mm}
+\end{equation*}
+\begin{equation*}
+    \varphi(y) = \frac{1}{2\sin{y}} + \text{const}.
+\end{equation*}
+Следовательно, можно взять
+\begin{equation*}
+    F(x,y) = \frac{x^2 + 1}{2\sin{y}} + 2x,
+\end{equation*}
+а общее решение уравнения (\ref{task_eq}) имеет вид
+\begin{equation*}
+    \frac{x^2 + 1}{2\sin{y}} + 2x = C.
+\end{equation*}
+\end{document}
