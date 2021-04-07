@@ -1,0 +1,66 @@
+\documentclass[12pt]{article} 
+\usepackage[russian]{babel}
+\usepackage{amsmath}			% for math formulas
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{amsfonts}			% for math formulas
+\usepackage{amssymb}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage[left=25mm, top=20mm, right=25mm, bottom=20mm, nohead, nofoot]{geometry}
+\pagestyle{empty}
+\begin{document}
+
+%-------------------------------
+%	TITLE SECTION
+%-------------------------------
+
+
+\begin{flushleft}
+\url{https://www.facebook.com/profile.php?id=10000654912}
+
+\url{https://github.com/lovgager/latex}
+\end{flushleft}
+\hrule 
+\begin{flushright}
+07.04.2021
+\end{flushright}
+\bigskip
+
+%-------------------------------
+%	CONTENTS
+%-------------------------------
+
+\newtheorem*{task}{Задача}
+\begin{task}
+В связном планарном графе $G$ степень любой вершины равна трём, а при укладке его на плоскости любая грань (включая внешнюю) окружена циклом длины 5. Найти число вершин и число рёбер в этом графе G.
+\end{task}
+
+\noindent\textbf{Решение.} 
+Пусть $p$ -- число вершин графа $G$;  $q$ -- число рёбер; $r$ -- число граней. Для степеней вершин справедлива формула
+\begin{equation}\label{deg}
+    \sum\limits_{v\in V} d(v) = 2q.
+\end{equation}
+Здесь $V$ -- множество всех вершин графа $G$, а $d(v)$ -- степень вершины $v$, то есть число рёбер, исходящих из неё. Действительно, если для каждой вершины посчитать число исходящих из неё ребёр и все эти числа сложить, то получится удвоенное число всех рёбер графа, поскольку каждое ребро считается дважды (так как соединяет ровно две вершины).
+
+Для планарных графов (то есть для таких, которые допускают укладку на плоскости без пересечений рёбер) справедлива формула Эйлера:
+\begin{equation}\label{euler}
+    p - q + r = 2.
+\end{equation}
+
+Кроме того, по условию каждая грань окружена циклом длины 5:
+\begin{equation}\label{cycles}
+    5r = 2q,
+\end{equation}
+Каждое ребро считается дважды, так как примыкает ровно к двум граням. 
+
+Таким образом, получаем систему из трёх уравнений (\ref{deg}), (\ref{euler}), (\ref{cycles}):
+
+\begin{equation*}
+    \begin{cases}
+    3p = 2q,\\
+    p-q+r = 2,\\
+    5r=2q.
+    \end{cases}
+\end{equation*}
+Решение системы: $p=20,\;q=30,\;r=12.$
+\end{document}
