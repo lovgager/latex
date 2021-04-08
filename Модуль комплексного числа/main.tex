@@ -1,0 +1,78 @@
+\documentclass[12pt]{article} 
+\usepackage[russian]{babel}
+\usepackage{amsmath}			% for math formulas
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{amsfonts}			% for math formulas
+\usepackage{amssymb}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage[left=25mm, top=20mm, right=25mm, bottom=20mm, nohead, nofoot]{geometry}
+\pagestyle{empty}
+\begin{document}
+
+%-------------------------------
+%	TITLE SECTION
+%-------------------------------
+
+
+\begin{flushleft}
+\url{https://www.facebook.com/profile.php?id=10000654912}
+
+\url{https://github.com/lovgager/latex}
+\end{flushleft}
+\hrule 
+\begin{flushright}
+08.04.2021
+\end{flushright}
+\bigskip
+
+%-------------------------------
+%	CONTENTS
+%-------------------------------
+
+\newtheorem*{task}{Задача}
+\begin{task}
+Найти площадь области комплексной плоскости, ограниченной кривой
+\begin{equation}\label{main}
+    \left|\frac{z+2i}{z-3i}\right| = a, 
+\end{equation}
+где $a$ -- фиксированное положительное число, $a \neq 1.$
+\end{task}
+
+\noindent\textbf{Решение.} 
+Комплексное число $z$ можно рассматривать как пару вещественных чисел: $z = x + iy, \;x,y \in \mathbb{R}$. Тогда кривая, задаваемая уравнением (\ref{main}) на комплексной плоскости -- это всё равно что кривая, задаваемая на плоскости двух вещественных координат $(x,y)$ уравнением
+\begin{equation}\label{xy_curve}
+    \left|\frac{x+i(y+2)}{x+i(y-3)}\right| = a.
+\end{equation}
+Для модуля комплексного числа справедливы равенства:
+\begin{equation*}
+    \left|\frac{z_1}{z_2}\right| = \frac{|z_1|}{|z_2|}, \quad\forall z_1, z_2 \in \mathbb{C};\vspace{2mm} \quad\quad\quad
+    |a+ib|=\sqrt{a^2+b^2}, \quad\forall a,b\in\mathbb{R}.
+\end{equation*}
+Таким образом, уравнение (\ref{xy_curve}) переходит в следующее:
+\begin{equation*}
+    \frac{x^2+(y+2)^2}{x^2+(y-3)^2} = a^2.
+\end{equation*}
+Домножаем на знаменатель, переносим всё в одну часть и раскрываем скобки:
+\begin{equation*}
+    x^2(1-a^2)+y^2(1-a^2)+2y(2+3a^2)+4-9a^2=0.
+\end{equation*}
+Так как по условию $a > 0, \; a \neq 1$, то можем разделить на $(1-a^2):$
+\begin{equation*}
+    x^2 + y^2 +2y\frac{2+3a^2}{1-a^2}+ \frac{4-9a^2}{1-a^2} = 0.
+\end{equation*}
+\begin{equation*}
+    x^2 + \left(y+\frac{2+3a^2}{1-a^2}\right)^2 - \left(\frac{2+3a^2}{1-a^2}\right) + \frac{4-9a^2}{1-a^2} = 0.
+\end{equation*}
+\begin{equation*}
+    x^2 + \left(y+\frac{2+3a^2}{1-a^2}\right)^2 = \frac{25a^2}{(1-a^2)^2}.
+\end{equation*}
+Получили уравнение окружности радиуса $R$, где 
+\begin{equation*}
+    R^2 = \frac{25a^2}{(1-a^2)^2}.
+\end{equation*}
+Искомая площадь круга $S$ равна $\pi R^2$, то есть
+\begin{equation*}
+    S = \pi\,\frac{25a^2}{(1-a^2)^2}.
+\end{equation*}
+\end{document}
