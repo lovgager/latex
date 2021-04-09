@@ -1,0 +1,80 @@
+\documentclass[12pt]{article} 
+\usepackage[russian]{babel}
+\usepackage{amsmath}			% for math formulas
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{amsfonts}			% for math formulas
+\usepackage{amssymb}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage[left=25mm, top=20mm, right=25mm, bottom=20mm, nohead, nofoot]{geometry}
+\pagestyle{empty}
+\begin{document}
+
+%-------------------------------
+%	TITLE SECTION
+%-------------------------------
+
+
+\begin{flushleft}
+\url{https://www.facebook.com/profile.php?id=10000654912}
+
+\url{https://github.com/lovgager/latex}
+\end{flushleft}
+\hrule 
+\begin{flushright}
+09.04.2021
+\end{flushright}
+\bigskip
+
+%-------------------------------
+%	CONTENTS
+%-------------------------------
+
+\newtheorem*{task}{Задача}
+\begin{task}
+Дана выборка $X_1, ..., X_n$ независимых случайных величин, подчинённых распределению Пуассона с неизвестным параметром $\lambda > 0.$ Найти методом максимального правдоподобия точечную оценку $\lambda$. 
+\end{task}
+
+\noindent\textbf{Решение.} 
+Пусть дана конкретная реализация выборки $x_1, ..., x_n.$ Суть метода максимального правдоподобия состоит в том, чтобы максимизировать по переменной $\lambda$ следующую величину:
+\begin{equation*}
+    L(\lambda, x_1, ..., x_n) = \mathbb{P}(X_1=x_1)\mathbb{P}(X_2=x_2)... \mathbb{P}(X_n = x_n),
+\end{equation*}
+Здесь все вероятности зависят от $\lambda.$ Другими словами, нужно найти такое значение параметра $\lambda$, при котором наблюдаемые данные $x_1, ..., x_n$ наиболее вероятны среди всех возможнных значений $\lambda$. Величина $L(\lambda, x_1, ..., x_n)$ называется функцией правдоподобия и имеет смысл вероятности наблюдать данную конкретную выборку $x_1, ..., x_n.$ Распишем её подробно.
+
+Все случайные величины $X_1, ..., X_n$ имеют распределение Пуассона. Их физический смысл состоит, например, в следующем: каждая такая случайная величина представляет собой число некоторых событий, произошедших за фиксированное время, при условии что эти события появляются независимо друг от друга с некоторой фиксированной средней частотой (оно используется в теории надёжности, в теории массового обслуживания и др.). Распределение Пуассона имеет вид
+\begin{equation*}
+    \mathbb{P}(X = k) = \frac{\lambda^k}{k!}\, e^{-\lambda}, \quad k = 0, 1, 2, ...
+\end{equation*}
+Тогда функция правдоподобия записывается следующим образом:
+\begin{equation*}
+    L(\lambda, x_1, ..., x_n) = \frac{\lambda^{x_1+...+x_n}}{x_1!...x_n!}\, e^{-n\lambda}
+\end{equation*}
+Далее для краткости будем обозначать 
+\begin{gather*}
+    L(\lambda) \equiv L(\lambda, x_1, ..., x_n), \\ x_1+...+x_n = n\overline{x}.
+\end{gather*}
+Нужно найти точку максимума функции $L(\lambda)$, а поскольку она не поменяется при воздействии любого монотонного преобразования, удобно рассмотреть логарифм функции правдоподобия:
+\begin{equation*}
+    \ln{L(\lambda)} = \ln{\left(\frac{\lambda^{n\overline{x}}}{x_1!...x_n!}\, e^{-n\lambda}\right)} = n\overline{x} \ln\lambda - n\lambda - \ln{(x_1!...x_n!)}.
+\end{equation*}
+Такую функцию гораздо проще дифференцировать:
+\begin{equation*}
+    \frac{d}{d\lambda} \ln{L(\lambda)} = \frac{n\overline{x}}{\lambda} - n.
+\end{equation*}
+Для отыскания точки максимума приравниваем производную к нулю:
+\begin{equation*}
+    \frac{n\overline{x}}{\lambda} - n = 0.
+\end{equation*}
+\begin{equation*}
+    \widehat{\lambda} = \overline{x}.
+\end{equation*}
+Убедимся, что $\widehat{\lambda}$ действительно является точкой максимума, а не минимума. Для этого достаточно вычислить вторую производную в точке $\widehat{\lambda}:$
+\begin{equation*}
+    \frac{d^2}{d\lambda^2} \ln{L(\lambda)} \bigg|_{\lambda = \widehat{\lambda}} = -\frac{n\overline{x}}{\widehat{\lambda}^2} < 0.
+\end{equation*}
+Значит, $\widehat{\lambda}$ является точкой максимума функции $\ln{L(\lambda)}$ и оценкой максимального правдоподобия неизвестного параметра $\lambda$ пуассоновского распределения. В итоге эта оценка как случайная величина вычисляется по формуле
+\begin{equation*}
+    \widehat{\lambda} = \frac{1}{n}\, \sum\limits_{i=1}^{n} X_i. 
+\end{equation*}
+\end{document}
