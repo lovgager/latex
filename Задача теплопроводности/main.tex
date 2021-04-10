@@ -1,0 +1,70 @@
+\documentclass[12pt]{article} 
+\usepackage[russian]{babel}
+\usepackage{amsmath}			% for math formulas
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{amsfonts}			% for math formulas
+\usepackage{amssymb}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage[left=25mm, top=20mm, right=25mm, bottom=20mm, nohead, nofoot]{geometry}
+\pagestyle{empty}
+\begin{document}
+
+%-------------------------------
+%	TITLE SECTION
+%-------------------------------
+
+
+\begin{flushleft}
+\url{https://www.facebook.com/profile.php?id=10000654912}
+
+\url{https://github.com/lovgager/latex}
+\end{flushleft}
+\hrule 
+\begin{flushright}
+10.04.2021
+\end{flushright}
+\bigskip
+
+%-------------------------------
+%	CONTENTS
+%-------------------------------
+
+\newtheorem*{task}{Задача}
+\begin{task}
+Найдите $\displaystyle\lim_{t\to +\infty} u(x,t)$, если $u(x,t)$ является решением начально-краевой задачи
+\begin{equation*}
+    \begin{cases}
+        u_t = u_{xx}, \quad 0 < x < 1, \enskip t > 0,\\
+        u_x(0,t) = u_x(1,t) = 0, \quad t \geq 0,\\
+        u(x,0) = 2184x^{11}(x-1)^2, \quad 0 \leq x \leq 1.
+    \end{cases}
+\end{equation*}
+\end{task}
+
+\noindent\textbf{Решение.} 
+По методу разделения переменных можно получить формулу решения:
+\begin{equation}\label{sol}
+    u(x,t) = \sum\limits_{n=0}^{\infty} \varphi_n\, e^{-(\pi n)^2t} \cos{\pi nx}.
+\end{equation}
+Здесь $\varphi_n$ -- коэффициенты Фурье для функции $\varphi(x) = 2184x^{11}(x-1)^2,$ которые вычисляются по формулам
+\begin{equation*}
+    \varphi_n = 2\int\limits_0^1 \varphi(x) \cos{\pi nx}\, dx, \quad n = 1, 2, ...\,, \quad \varphi_1 = \int\limits_0^1 \varphi(x)\,dx.
+\end{equation*}
+Так как в сумме (\ref{sol}) в каждом слагаемом, кроме первого, присутствует экспонента с отрицательным показателем, то в пределе при $t\to\infty$ останется только первый коэффициент Фурье. Другими словами, распределение температуры в тонком стержне через достаточно большой промежуток времени станет равномерным и в каждой точке равным среднему значению от начального распределения.
+\begin{equation*}
+    \lim_{t\to +\infty} u(x,t) = \varphi_1 = \int\limits_0^1 \varphi(x)\,dx = \int\limits_0^1 2184x^{11}(x-1)^2\,dx = 2184\,B(12,3).
+\end{equation*}
+Для удобства вычислений последний интеграл записали в виде бета-функции Эйлера. Её определение следующее:
+\begin{equation*}
+    B(x,y) = \int\limits_0^1 t^{x-1} (1-t)^{y-1}\,dt, \quad x > 0, y > 0.
+\end{equation*}
+Для бета-функции справедлива формула
+\begin{equation*}
+    B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)},
+\end{equation*}
+где $\Gamma(x)$ -- гамма-функция Эйлера, для которой справедливо свойство $\Gamma(n + 1) = n!,$ если $n$ целое (то есть гамма-функция -- это обобщение факториала). Таким образом, ответ:
+\begin{equation*}
+    \lim_{t\to +\infty} u(x,t) = 2184\,  B(12,3) = 2184\, \frac{\Gamma(12)\Gamma(3)}{\Gamma(15)} = 2184\, \frac{11!\,3!}{14!} = 2184\,\frac{6}{12\cdot 13\cdot 14} = 2.
+\end{equation*}
+\end{document}
