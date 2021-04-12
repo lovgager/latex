@@ -1,0 +1,80 @@
+\documentclass[12pt]{article} 
+\usepackage[russian]{babel}
+\usepackage{amsmath}			% for math formulas
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{amsfonts}			% for math formulas
+\usepackage{amssymb}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage[left=25mm, top=20mm, right=25mm, bottom=20mm, nohead, nofoot]{geometry}
+\pagestyle{empty}
+\begin{document}
+
+%-------------------------------
+%	TITLE SECTION
+%-------------------------------
+
+
+\begin{flushleft}
+\url{https://www.facebook.com/profile.php?id=10000654912}
+
+\url{https://github.com/lovgager/latex}
+\end{flushleft}
+\hrule 
+\begin{flushright}
+12.04.2021
+\end{flushright}
+\bigskip
+
+%-------------------------------
+%	CONTENTS
+%-------------------------------
+
+\newtheorem*{task}{Задача}
+\begin{task}
+Аппроксимировать вторую производную $y''(0)$ функции $y(x)$ в точке $x=0$ разностным отношением, используя значения $y(x)$ в узлах трёхточечного шаблона $x_1=-h/4, \enskip x_2=0, \enskip x_3=3h/4.$ Вычислить значение разностного отошения (приближённое значение $y''(0)$) для $y(x)=x^3$ при $h=0.04$.
+\end{task}
+
+\noindent\textbf{Решение.} 
+Искомое разностное отношение имеет вид:
+\begin{equation}\label{appr}
+    y''(0) \approx ay(x_1)+by(x_2)+cy(x_3) \equiv ay(-h/4) + by(0) + cy(3h/4),
+\end{equation}
+где $a,b,c$ -- неизвестные числа, зависящие от $h$. В правой части этой формулы разложим все $y$ в ряд Тейлора в окрестности точки 0, предполагая, что производные всех необходимых порядков в точке 0 существуют:
+\begin{gather*}
+    y(x) = \sum\limits_{n=0}^{\infty} \frac{y^{(n)}(0)}{n!} x^n \equiv y(0) + y'(0)\,x + \frac{y''(0)}{2}\,x^2 + O(x^3),\\
+    y(-h/4) = y(0) + y'(0)\,\frac{h}{4} + y''(0)\,\frac{h^2}{32} + O(h^3),\\\\
+    y(3h/4) = y(0) + y'(0)\,\frac{3h}{4} + y''(0)\,\frac{9h^2}{32} + O(h^3).
+\end{gather*}
+Подставляем в формулу (\ref{appr}):
+\begin{equation*}
+    y''(0) \approx a\left(y(0) + y'(0)\,\frac{h}{4} + y''(0)\,\frac{h^2}{32}\right) + by(0) + c\left(y(0) + y'(0)\,\frac{3h}{4} + y''(0)\,\frac{9h^2}{32}\right) + O(h^3).
+\end{equation*}
+Мы можем обеспечить третий порядок аппроксимации по $h$, если приравняем к нулю коэффициенты при $y(0)$ и $y'(0)$, а коэффициент при $y''(0)$ -- к единице:
+\begin{equation*}
+    \begin{cases}
+    a + b + c = 0, \vspace{2mm}\\
+    \displaystyle\frac{ah}{4} + \frac{3ch}{4} = 0, \vspace{3mm}\\
+    \displaystyle\frac{ah^2}{32} + \frac{9ch^2}{32} = 1.
+    \end{cases}
+\end{equation*}
+Решение системы:
+\begin{equation*}
+    a = -\,\frac{16}{h^2}, \quad b = \frac{32}{3h^2}, \quad c = \frac{16}{3h^2}.
+\end{equation*}
+\newpage
+Таким образом, искомая формула имеет вид:
+\begin{equation*}
+    y''(0) \approx \frac{-48y(-h/4) + 32y(0) + 16y(3h/4)}{3h^2}.
+\end{equation*}
+Более точно, как мы показали:
+\begin{equation*}
+    y''(0) = \frac{-48y(-h/4) + 32y(0) + 16y(3h/4)}{3h^2} + O(h^3).
+\end{equation*}
+
+Пусть теперь $y(x) = x^3, \enskip h = 0.04$. Тогда из этой формулы получаем
+\begin{equation*}
+    y''(0) \approx \frac{-48(-0.01)^3 + 32\cdot 0 + 16(0.03)^3}{3(0.01)^3} = 0.016.
+\end{equation*}
+Точный результат равен $y''(0) = 0$, поэтому значение $0.016$ можно считать неплохим приближением.
+\end{document}
