@@ -1,0 +1,66 @@
+\documentclass[12pt]{article} 
+\usepackage[russian]{babel}
+\usepackage{amsmath}			% for math formulas
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{amsfonts}			% for math formulas
+\usepackage{amssymb}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage[left=25mm, top=20mm, right=25mm, bottom=20mm, nohead, nofoot]{geometry}
+\pagestyle{empty}
+\begin{document}
+
+%-------------------------------
+%	TITLE SECTION
+%-------------------------------
+
+
+\begin{flushleft}
+\url{https://www.facebook.com/profile.php?id=10000654912}
+
+\url{https://github.com/lovgager/latex}
+\end{flushleft}
+\hrule 
+\begin{flushright}
+14.04.2021
+\end{flushright}
+\bigskip
+
+%-------------------------------
+%	CONTENTS
+%-------------------------------
+
+\newtheorem*{task}{Задача}
+\begin{task}
+В двумерном евклидовом пространстве задано скалярное произведение \\ $\langle x,y \rangle = 3x_1y_1+7x_2y_2.$ Для системы векторов $a,b$ матрица Грама равна 
+\begin{equation*}
+    \begin{pmatrix}
+    34 & -39\\
+    -39 & 75
+    \end{pmatrix}.
+\end{equation*}
+Найти вектор $a$, если $b = (-2,3)$ и известно, что $a_1 > 0.$
+\end{task}
+
+\noindent\textbf{Решение.} 
+По определению матрица Грама для системы векторов $a,b$ -- это матрица всевозможных скалярных произведений, а именно:
+\begin{equation*}
+    \begin{pmatrix}
+    \langle a, a \rangle & \langle a, b \rangle \\
+    \langle b, a \rangle & \langle b, b \rangle
+    \end{pmatrix}.
+\end{equation*}
+Если $a=(a_1,a_2), \enskip b=(b_1, b_2)$, то, пользуясь определением скалярного произведения (из условия), можем записать:
+\begin{gather*}
+    \langle a, a \rangle = 3a_1^2+7a_2^2 = 34,\\
+    \langle a, b \rangle = 3a_1b_1 + 7a_2b_2 = -6a_1+21a_2=-39.
+\end{gather*}
+Таким образом, получаем систему из двух уравнений относительно неизвестных $a_1, a_2$. Если выразить $a_2$ из второго уравнения и подставить в первое, получим:
+\begin{equation*}
+    25a_1^2-52a_1^2-69=0.
+\end{equation*}
+Это уравнение имеет два корня, но по условию $a_1>0$, поэтому остаётся только корень $a_1=3.$ Из системы находим значение $a_2 = -1.$ 
+
+Отметим, что $\langle b,b\rangle=75$, поэтому если бы в исходной матрице правый нижний элемент не равнялся $75$, то она бы не являлась матрицей Грама системы векторов $a,b$.
+
+\end{document}
