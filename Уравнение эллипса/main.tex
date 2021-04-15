@@ -1,0 +1,104 @@
+\documentclass[12pt]{article} 
+\usepackage[russian]{babel}
+\usepackage{amsmath}			% for math formulas
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{amsfonts}			% for math formulas
+\usepackage{amssymb}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage[left=25mm, top=20mm, right=25mm, bottom=20mm, nohead, nofoot]{geometry}
+\usepackage{graphicx,xcolor}
+\pagestyle{empty}
+
+\begin{document}
+
+%-------------------------------
+%	TITLE SECTION
+%-------------------------------
+
+
+\begin{flushleft}
+\url{https://www.facebook.com/profile.php?id=10000654912}
+\url{https://github.com/lovgager/latex}
+\end{flushleft}
+\hrule 
+\begin{flushright}
+15.04.2021
+\end{flushright}
+\bigskip
+
+%-------------------------------
+%	CONTENTS
+%-------------------------------
+
+\newtheorem*{task}{Задача}
+\begin{task}
+На плоскости прямоугольных декартовых координат $(x,y)$ расположен эллипс с центром в начале координат и полуосями $1/\sqrt{3}, \enskip 1/3$. Известно, что большая ось эллипса образует угол $\alpha = \arccos{(1/\sqrt{3})}$ с осью абсцисс (угол отсчитывается от оси абсцисс против часовой стрелки). Найти уравнение эллипса в координатах $(x,y).$
+\end{task}
+
+\noindent\textbf{Решение.} Введём прямоугольную декартову систему координат $(u,v)$, в которой эллипс имеет канонический вид, то есть такой, что его оси совпадают с осями координат:
+\begin{figure}[ht]\centering
+    \def\svgwidth{7cm}
+    \input{drawing.pdf_tex}
+\end{figure}
+
+\noindent В этих координатах его можно задать каноническим уравнением 
+\begin{equation*}
+    \frac{u^2}{a^2} + \frac{v^2}{b^2} = 1,
+\end{equation*}
+где $a,b$ -- большая и малая полуоси соответственно. В данном случае $a=1/\sqrt{3}, \enskip b=1/3$ по условию. Поэтому уравнение имеет вид:
+\begin{equation}\label{canon_eq}
+    3u^2+9v^2=1.
+\end{equation}
+Теперь нужно перейти от координат $(u,v)$ к координатам $(x,y)$. Так как эллипс поворачивается на угол $\alpha$ против часовой стрелки, то координаты $(x,y)$ получены путём вращения $(u,v)$ на тот же угол по часовой стрелке:
+\begin{figure}[ht]\centering
+    \def\svgwidth{7cm}
+    \input{drawing2.pdf_tex}
+\end{figure}
+
+\newpage\noindent Пунктирную линию на рисунке выше следует понимать как ось $u$ в старой системе координат. Из рисунка видно, например, что вектор $(1,0)$ в старой системе координат переходит в вектор $(\cos\alpha, \sin\alpha)$. Вообще, можно записать, что переход к новой системе координат осуществляется с помощью матрицы поворота следующим образом: 
+\begin{equation*}
+    \begin{bmatrix}
+    x\\y
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    \cos\alpha & -\sin\alpha \\
+    \sin\alpha & \cos\alpha
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+    u\\v
+    \end{bmatrix}.
+\end{equation*}
+Отсюда легко можно выразить $u,v$, поскольку любая матрица поворота является ортогональной, то есть её обратная матрица совпадает с транспонированной:
+\begin{equation*}
+    \begin{bmatrix}
+    u\\v
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    \cos\alpha & \sin\alpha \\
+    -\sin\alpha & \cos\alpha
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+    x\\y
+    \end{bmatrix}.
+\end{equation*}
+Подставляем выражения для $u,v$ в уравнение (\ref{canon_eq}) и учитываем, что $\cos\alpha = 1/\sqrt{3}$, а следовательно, $\sin\alpha = \sqrt{2}/\sqrt{3}$:
+\begin{equation*}
+    3(x\cos\alpha + y\sin\alpha)^2 + 9(-x\sin\alpha + y\cos\alpha) = 1,
+\end{equation*}
+\begin{equation*}
+    3\left(\frac{x}{\sqrt{3}} + \frac{y\sqrt{2}}{\sqrt{3}}\right)^2 + 9\left(\frac{-x\sqrt{2}}{\sqrt{3}} + \frac{y}{\sqrt{3}}\right) = 1,
+\end{equation*} \vspace{2mm}
+\begin{equation*}
+    x^2 + 2\sqrt{2}xy + 2y^2 + 3(2x^2 - 2\sqrt{2}xy + y^2) = 1,
+\end{equation*}
+\begin{equation*}
+    7x^2 - 4\sqrt{2}xy + 5y^2 = 1.
+\end{equation*}
+Получили искомое уравнение эллипса. Отметим, что эта задача в частном случае является обратной к задаче приведения квадратичной формы к каноническому виду, которая может быть решена методом Лагранжа.
+
+\end{document}
