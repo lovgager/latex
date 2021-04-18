@@ -1,0 +1,51 @@
+\documentclass[12pt]{article} 
+\usepackage[russian]{babel}
+\usepackage{amsmath}			% for math formulas
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{amsfonts}			% for math formulas
+\usepackage{amssymb}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage[left=25mm, top=20mm, right=25mm, bottom=20mm, nohead, nofoot]{geometry}
+\pagestyle{empty}
+\begin{document}
+
+%-------------------------------
+%	TITLE SECTION
+%-------------------------------
+
+
+\begin{flushleft}
+\url{https://www.facebook.com/profile.php?id=10000654912}
+
+\url{https://github.com/lovgager/latex}
+\end{flushleft}
+\hrule 
+\begin{flushright}
+18.04.2021
+\end{flushright}
+\bigskip
+
+%-------------------------------
+%	CONTENTS
+%-------------------------------
+
+\newtheorem*{task}{Задача}
+\begin{task}
+Вероятность того, что книга лежит в шкафу, равна $p$. Если книга в шкафу, то она может с равной вероятностью лежать в одном из 4 ящиков. Был наугад открыт один из ящиков, и книги в нём не оказалось. Какова теперь вероятность, что книга лежит в шкафу?
+\end{task}
+
+\noindent\textbf{Решение.} 
+Обозначим события: $A$ -- книга не лежит в выбранном ящике; $B$ -- книга лежит в шкафу. Нужно вычислить $\mathbb{P}(B|A).$ Используем формулу Байеса:
+\begin{equation}\label{bayes}
+    \mathbb{P}(B|A) = \frac{\mathbb{P}(A|B)\,\mathbb{P}(B)} {\mathbb{P}(A)}.
+\end{equation}
+По условию $\mathbb{P}(B) = p$. Если книга в шкафу, то она лежит с равной вероятностью в одном из четырёх ящиков, то есть $\mathbb{P}(A|B) = 3/4$. Вычислим $\mathbb{P}(A)$ по формуле полной вероятности (зная, что $B$ и $\overline{B}$ -- это полная группа событий):
+\begin{equation*}
+    \mathbb{P}(A) = \mathbb{P}(B)\,\mathbb{P}(A|B) + \mathbb{P}(\overline{B})\, \mathbb{P}(A|\overline{B}) = \frac{3}{4}p + 1 - p = 1 - \frac{p}{4}.
+\end{equation*}
+Здесь мы воспользовались тем, что $\mathbb{P}(\overline{B}) = 1 - \mathbb{P}(B)$ и $\mathbb{P}(A|\overline{B}) = 1$. Подставляем все вычисленные значения в формулу (\ref{bayes}):
+\begin{equation*}
+    \mathbb{P}(B|A) = \frac{\displaystyle\frac{3}{4}p}{1 - \displaystyle\frac{p}{4}} = \frac{3p}{4-p}.
+\end{equation*}
+\end{document}
