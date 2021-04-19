@@ -1,0 +1,76 @@
+\documentclass[12pt]{article} 
+\usepackage[russian]{babel}
+\usepackage{amsmath}			% for math formulas
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{amsfonts}			% for math formulas
+\usepackage{amssymb}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage[left=25mm, top=20mm, right=25mm, bottom=20mm, nohead, nofoot]{geometry}
+\pagestyle{empty}
+\begin{document}
+
+%-------------------------------
+%	TITLE SECTION
+%-------------------------------
+
+
+\begin{flushleft}
+\url{https://www.facebook.com/profile.php?id=10000654912}
+
+\url{https://github.com/lovgager/latex}
+\end{flushleft}
+\hrule 
+\begin{flushright}
+19.04.2021
+\end{flushright}
+\bigskip
+
+%-------------------------------
+%	CONTENTS
+%-------------------------------
+
+\newtheorem*{task}{Задача}
+\begin{task}
+Найти общее решение дифференциального уравнения
+\begin{equation*}
+    x^2y''(x)+xy'(x)+4y(x)=10x.
+\end{equation*}
+\end{task}
+
+\noindent\textbf{Решение.} 
+Это уравнение является частным случаем дифференциального уравнения Эйлера. Его можно свести к линейному уравнению с постоянными коэффициентами с помощью замены
+\begin{equation*}
+    x = x(t) = e^t.
+\end{equation*}
+Теперь считаем $t$ независимой переменной; для простоты можно ввести функцию
+\begin{equation*}
+    v(t) = y(e^t) = y(x).
+\end{equation*}
+Тогда её производные выписываются следующим образом:
+\begin{gather*}
+    \dot v(t) = \frac{d}{dt} y(e^t) = e^t y'(e^t) = xy'(x),\\
+    \ddot v(t) = \frac{d}{dt} v'(t) = \frac{d}{dt} \left(e^t y'(e^t)\right) = e^{2t}y''(e^t) + e^t y'(e^t) = x^2y''(x)+xy'(x) = x^2y''(x)+\dot v(t),\\
+    \Rightarrow x^2y''(x) = \ddot v(t) - \dot v(t).
+\end{gather*}
+Подставляем эти выражения в исходное уравнение:
+\begin{equation}\label{non-uniform}
+    \ddot v(t) + 4v(t) = 10e^t.
+\end{equation}
+Получилось линейное неоднородное уравнение с постоянными коэффициентами. Сначала получим решение однородного уравнения
+\begin{equation*}
+    \ddot v(t) + 4v(t) = 0.
+\end{equation*}
+Его общее решение:
+\begin{equation}\label{uniform}
+    v_0(t) = C_1\cos{2t} + C_2\sin{2t}.
+\end{equation}
+Как известно, общее решение неоднородного уравнения (\ref{non-uniform}) представляется как сумма его частного решения и общего решения однородного уравнения (\ref{uniform}). Частное решение уравнения (\ref{non-uniform}) естественно искать в виде $ae^t$, где $a$ -- константа, подлежащая определению. Подставив в уравнение, получим, что $a = 2$. Таким образом,
+\begin{equation*}
+    v(t) = C_1\cos{2t} + C_2\sin{2t} + 2e^t.
+\end{equation*}
+Возвращаемся к замене. Отметим, что при замене $x=e^t$ формально $x$ может принимать только положительные значения, но если положить $t = \ln{|x|}$, то следующая формула останется справедливой для всех ненулевых $x$:
+\begin{equation*}
+    y(x) = C_1\cos{(2\ln{|x|})} + C_2\sin{(2\ln{|x|})} + 2x.
+\end{equation*}
+\end{document}
