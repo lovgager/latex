@@ -1,0 +1,71 @@
+\documentclass[12pt]{article} 
+\usepackage[russian]{babel}
+\usepackage{amsmath}			% for math formulas
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{amsfonts}			% for math formulas
+\usepackage{amssymb}
+\usepackage[unicode, pdftex]{hyperref}
+\usepackage[left=25mm, top=20mm, right=25mm, bottom=20mm, nohead, nofoot]{geometry}
+\pagestyle{empty}
+\begin{document}
+
+%-------------------------------
+%	TITLE SECTION
+%-------------------------------
+
+
+\begin{flushleft}
+\url{https://www.facebook.com/profile.php?id=10000654912}
+
+\url{https://github.com/lovgager/latex}
+\end{flushleft}
+\hrule 
+\begin{flushright}
+22.04.2021
+\end{flushright}
+\bigskip
+
+%-------------------------------
+%	CONTENTS
+%-------------------------------
+
+\newtheorem*{task}{Задача}
+\begin{task}
+Методом неопределённых коэффициентов найти полином Жегалкина для функции алгебры логики $f(x_1, x_2, x_3)$, заданной таблицей значений:
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|}\hline
+         $x_1$ & $x_2$ & $x_3$ & $f$ \\ \hline
+         0 & 0 & 0 & 0 \\
+         0 & 0 & 1 & 0 \\
+         0 & 1 & 0 & 0 \\
+         0 & 1 & 1 & 0 \\
+         1 & 0 & 0 & 0 \\
+         1 & 0 & 1 & 1 \\
+         1 & 1 & 0 & 1 \\
+         1 & 1 & 1 & 1 \\\hline
+    \end{tabular}
+\end{table}
+\end{task}
+
+\noindent\textbf{Решение.} 
+Полином Жегалкина ищется в виде
+\begin{equation*}
+    f(x_1,x_2,x_3) = c_0 \oplus c_1x_1 \oplus c_2x_2 \oplus c_3x_3 \oplus c_{12}x_1x_2 \oplus c_{13}x_1x_3 \oplus c_{23}x_2x_3 \oplus c_{123}x_1x_2x_3,
+\end{equation*}
+где $\oplus$ обозначает логическое "ИЛИ" (сложение по модулю 2), а $c_i \in \{0, 1\}$ -- неизвестные коэффициенты, подлежащие определению. Будем подставлять последовательно каждую строку значений из таблицы в это выражение и находить коэффициенты. Например,
+\begin{gather*}
+    f(0,0,0) = 0 = c_0,\\
+    f(0,0,1) = 0 = c_0 \oplus c_3=0\quad\Rightarrow c_3=0,\\
+    f(0,1,0) = 0 = c_0 \oplus c_2=0\quad\Rightarrow c_2=0,\\ ...
+\end{gather*}
+В итоге получаем
+\begin{equation*}
+    c_{12} = c_{13} = c_{123} = 1,
+\end{equation*}
+остальные коэффициенты равны нулю. Ответ:
+\begin{equation*}
+    f(x_1, x_2, x_3) = x_1x_2 \oplus x_1x_3 \oplus x_1x_2x_3.
+\end{equation*}
+\end{document}
